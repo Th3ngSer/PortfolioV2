@@ -1,0 +1,6 @@
+{
+  "command": "",
+  "serverUrl": "https://www.builder.my",
+  "authenticateProxy": false,
+  "commitMode": "commits"
+}

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Inter (Optional, but good for modern feel) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS: Base styles, subtle animations, and overrides not easily done in Tailwind */
+        :root {
+            --primary-color: #0066cc; /* Blue from your original CSS */
+            --secondary-color: #f0f5ff; /* Light blue for tags */
+            --dark-text: #333;
+            --light-text: #666;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font for a modern look */
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Smart Header specific CSS */
+        /* This class will be toggled by JavaScript */
+        .header-hidden {
+            transform: translateY(-100%); /* Hides the header completely */
+        }
+
+        /* Burger menu animation for lines */
+        .burger.toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .burger.toggle .line2 {
+            opacity: 0;
+        }
+        .burger.toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile navigation menu slide-in/out */
+        .nav-links-mobile-active {
+            transform: translateY(0%);
+        }
+
+        /* Basic Fade-in/Slide-up for sections on scroll (optional, can be expanded) */
+        .section-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50 transition-transform duration-300 ease-in-out">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
+                <a href="#" class="text-3xl font-bold text-gray-800 hover:text-blue-700 transition duration-200">
+                    Port<span class="text-blue-600">folio</span>
+                </a>
+                <ul class="nav-links hidden md:flex space-x-8 text-lg font-medium">
+                    <li><a href="#hero" class="text-gray-700 hover:text-blue-600 transition duration-200">Home</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-200">About</a></li>
+                    <li><a href="#projects" class="text-gray-700 hover:text-blue-600 transition duration-200">Projects</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-200">Contact</a></li>
+                </ul>
+                <!-- Burger Menu for Mobile -->
+                <div class="burger md:hidden cursor-pointer p-2">
+                    <div class="line1 w-6 h-1 bg-gray-800 my-1 transition-all duration-300 ease-in-out"></div>
+                    <div class="line2 w-6 h-1 bg-gray-800 my-1 transition-all duration-300 ease-in-out"></div>
+                    <div class="line3 w-6 h-1 bg-gray-800 my-1 transition-all duration-300 ease-in-out"></div>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <ul class="nav-links-mobile bg-white w-full absolute top-full left-0 flex flex-col items-center py-4 space-y-4 shadow-lg transform -translate-y-full transition-transform duration-300 ease-in-out md:hidden">
+            <li><a href="#hero" class="text-gray-700 hover:text-blue-600 text-lg font-medium block w-full text-center py-2">Home</a></li>
+            <li><a href="#about" class="text-gray-700 hover:text-blue-600 text-lg font-medium block w-full text-center py-2">About</a></li>
+            <li><a href="#projects" class="text-gray-700 hover:text-blue-600 text-lg font-medium block w-full text-center py-2">Projects</a></li>
+            <li><a href="#contact" class="text-gray-700 hover:text-blue-600 text-lg font-medium block w-full text-center py-2">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Spacer div to prevent content from hiding behind fixed header -->
+    <!-- Adjust height based on your header's actual total height (e.g., 80px for py-4 nav, 80px is a good guess) -->
+    <div class="h-20"></div> 
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center bg-gray-50 py-16">
+        <div class="container mx-auto px-4 text-center md:text-left">
+            <div class="max-w-xl mx-auto md:mx-0">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-gray-900">
+                    Hi, I'm <span class="text-blue-600">Your Name</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-8 text-gray-700">
+                    A passionate web developer specializing in creating beautiful and functional websites. I love turning ideas into digital reality.
+                </p>
+                <a href="#projects" class="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    View My Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white section-animate">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto">Here's a little background about who I am and what I do</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-1/2 rounded-lg overflow-hidden shadow-xl">
+                    <img src="https://placehold.co/600x400/CCCCCC/333333?text=Profile+Picture" alt="Profile Picture" class="w-full h-auto object-cover">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Web Developer & Designer</h3>
+                    <p class="text-gray-700 mb-4">
+                        I'm a front-end developer with a passion for creating intuitive and engaging user experiences. With over X years of experience in web development, I've worked on a variety of projects that have helped me hone my skills and expand my knowledge.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        I graduated from [Your University] with a degree in [Your Field]. Since then, I've been working on freelance projects and collaborating with teams to build modern web applications.
+                    </p>
+                    <div class="mt-8">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4">My Skills</h4>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">HTML5</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">CSS3</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">JavaScript</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">React</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">Node.js</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">UI/UX Design</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">Responsive Design</span>
+                            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-24 bg-gray-50 section-animate">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">My Projects</h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto">Here are some of the projects I've worked on recently</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://placehold.co/400x300/A0B3C8/FFFFFF?text=E-commerce+Site" alt="E-commerce Website" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">E-commerce Website</h3>
+                        <p class="text-gray-700 mb-4">A fully responsive e-commerce platform with product catalog, shopping cart, and checkout functionality.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">HTML</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">CSS</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">JavaScript</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">React</span>
+                        </div>
+                        <div class="flex justify-start gap-4">
+                            <a href="#" target="_blank" class="text-blue-600 hover:underline font-semibold text-lg">Live Demo</a>
+                            <a href="#" target="_blank" class="text-gray-700 hover:underline font-semibold text-lg">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://placehold.co/400x300/B0E0E6/333333?text=Weather+App" alt="Weather App" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Weather App</h3>
+                        <p class="text-gray-700 mb-4">A web application that displays current weather and forecast data for any location using a weather API.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">HTML</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">CSS</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">JavaScript</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">API</span>
+                        </div>
+                        <div class="flex justify-start gap-4">
+                            <a href="#" target="_blank" class="text-blue-600 hover:underline font-semibold text-lg">Live Demo</a>
+                            <a href="#" target="_blank" class="text-gray-700 hover:underline font-semibold text-lg">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://placehold.co/400x300/C8A2C8/FFFFFF?text=Task+Manager" alt="Task Manager" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Task Manager</h3>
+                        <p class="text-gray-700 mb-4">A task management application with features like task creation, due dates, priority levels, and categories.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">HTML</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">CSS</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">JavaScript</span>
+                            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm">Local Storage</span>
+                        </div>
+                        <div class="flex justify-start gap-4">
+                            <a href="#" target="_blank" class="text-blue-600 hover:underline font-semibold text-lg">Live Demo</a>
+                            <a href="#" target="_blank" class="text-gray-700 hover:underline font-semibold text-lg">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white section-animate">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact Me</h2>
+                <p class="text-lg text-gray-600 max-w-xl mx-auto">Feel free to get in touch with me for collaborations or inquiries</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Let's Connect</h3>
+                    <p class="text-gray-700 mb-6">
+                        I'm currently available for freelance work or full-time positions. If you have a project that you want to get started or think you need my help with something, then get in touch.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center text-gray-800">
+                            <span class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 text-blue-600 text-xl">📧</span>
+                            <span>youremail@example.com</span>
+                        </div>
+                        <div class="flex items-center text-gray-800">
+                            <span class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 text-blue-600 text-xl">📱</span>
+                            <span>+1 234 567 890</span>
+                        </div>
+                        <div class="flex items-center text-gray-800">
+                            <span class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 text-blue-600 text-xl">📍</span>
+                            <span>Your Location</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300 text-lg font-bold">GH</a>
+                        <a href="#" target="_blank" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300 text-lg font-bold">LI</a>
+                        <a href="#" target="_blank" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300 text-lg font-bold">TW</a>
+                        <a href="#" target="_blank" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300 text-lg font-bold">IG</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form id="contactForm" class="bg-gray-50 p-8 rounded-lg shadow-xl">
+                        <div class="mb-5">
+                            <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-5">
+                            <input type="email" class="w-full px-5 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" class="w-full px-5 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Subject">
+                        </div>
+                        <div class="mb-5">
+                            <textarea class="w-full px-5 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-36 resize-y" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300 shadow-md">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="container mx-auto px-4">
+            <div class="mb-4">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+                <p>Designed and built with ❤️</p>
+            </div>
+            <!-- Optional: Add social links here again if desired, or keep them in contact section only -->
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Navigation Toggle ---
+            const burger = document.querySelector('.burger');
+            const navLinksMobile = document.querySelector('.nav-links-mobile');
+
+            if (burger && navLinksMobile) {
+                burger.addEventListener('click', () => {
+                    navLinksMobile.classList.toggle('nav-links-mobile-active');
+                    burger.classList.toggle('toggle'); // For burger icon animation
+                });
+            } else {
+                console.error('Burger menu or mobile nav links not found.');
+            }
+
+            // --- Smooth Scrolling for Navigation Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const header = document.querySelector('header');
+                        const headerOffset = header ? header.offsetHeight : 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        console.warn(`Target element with ID "${targetId}" not found for smooth scrolling.`);
+                    }
+                    
+                    // Close mobile nav if open after clicking a link
+                    if (navLinksMobile && navLinksMobile.classList.contains('nav-links-mobile-active')) {
+                        navLinksMobile.classList.remove('nav-links-mobile-active');
+                        burger.classList.remove('toggle');
+                    }
+                });
+            });
+
+            // --- Form Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted:', new FormData(contactForm));
+                    console.log('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                    // In a real application, you'd send this data to a backend (e.g., using fetch API)
+                });
+            }
+
+            // --- Smart Header Scroll Logic ---
+            const header = document.querySelector('header');
+            let lastScrollY = window.scrollY;
+            const scrollThreshold = 50; // Pixels to scroll before hiding/showing
+
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    // Check if user has scrolled beyond a certain point from the top
+                    if (window.scrollY > header.offsetHeight + scrollThreshold) {
+                        if (window.scrollY < lastScrollY) {
+                            // Scrolling Up: Show header
+                            header.classList.remove('header-hidden');
+                        } else {
+                            // Scrolling Down: Hide header
+                            header.classList.add('header-hidden');
+                        }
+                    } else {
+                        // At or near the very top of the page, always show header
+                        header.classList.remove('header-hidden');
+                    }
+                    lastScrollY = window.scrollY;
+                });
+            } else {
+                console.error('Error: Header element not found for smart scroll logic.');
+            }
+
+            // --- Scroll Animation for Sections (Optional) ---
+            // This will make sections fade in and slide up as they become visible
+            const sectionsToAnimate = document.querySelectorAll('.section-animate');
+
+            const observerOptions = {
+                root: null, /* viewport */
+                rootMargin: '0px',
+                threshold: 0.2 /* 20% of the section must be visible */
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); /* Stop observing once visible */
+                    }
+                });
+            }, observerOptions);
+
+            sectionsToAnimate.forEach(section => {
+                observer.observe(section);
+            });
+            // Trigger an initial check in case sections are already in view on load
+            const initialScrollEvent = new Event('scroll');
+            window.dispatchEvent(initialScrollEvent);
+        });
+    </script>
+</body>
+</html>
